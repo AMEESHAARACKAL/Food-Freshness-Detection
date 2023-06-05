@@ -4,7 +4,7 @@ from keras.applications.inception_v3 import (decode_predictions,
                                              preprocess_input)
 from tensorflow import keras
 from PIL import Image
-import keras.preprocessing.image as image_utils
+import keras.utils as image_utils
 
 
 def modelPrediction(imageBytes, img_height, img_width, num_classes, class_names):

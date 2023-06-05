@@ -3,9 +3,12 @@ import time
 from flask import Flask, request
 from waitress import serve
 from detection_model import modelPrediction
+from flask_cors import CORS, cross_origin
 import io
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 class_names = ['F_Banana', 'F_Lemon', 'F_Lulo', 'F_Mango', 'F_Orange', 'F_Strawberry', 'F_Tamarillo',
@@ -46,6 +49,7 @@ def handle_exception(e):
 
 
 @app.route('/', methods=["POST"])
+@cross_origin()
 def damage_detection_api():
     start = time.time()
     f = request.files['file']
